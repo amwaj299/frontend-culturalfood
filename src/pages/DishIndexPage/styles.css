@@ -1,16 +1,115 @@
-.index-card-container {
-  padding: 0 30px;
+.notes-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8f9ff, #f2f2f9);
+  padding: 40px 20px;
 }
 
-.page-header {
+
+.notes-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+
+.notes-container h1 {
+  color: #6b42ff;
+  text-shadow: 0 3px 6px rgba(100, 60, 255, 0.15);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+
+.add-note-btn {
+  background: linear-gradient(135deg, #8e6bff, #bfa5ff);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 40px;
+}
+
+.add-note-btn:hover {
+  background: linear-gradient(135deg, #a586ff, #d2c0ff);
+  transform: scale(1.05);
+}
+
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  width: 90%;
+  max-width: 900px;
+}
+
+
+.index-card-container {
+  background: #fff;
+  border-radius: 15px;
+  border: 2px solid #c6b4ff;
+  box-shadow: 0 4px 10px rgba(140, 100, 255, 0.15);
   text-align: center;
-  margin: 20px 0;
+  padding: 20px 10px;
+  transition: 0.3s ease;
 }
 
-.page-header img {
+.note-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(120, 80, 255, 0.25);
+}
+
+
+.note-card img {
   width: 80px;
-  margin: 0 10px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+
+.note-card h2 {
+  font-size: 1.2rem;
+  color: #6b42ff;
+  margin-bottom: 8px;
+}
+
+.note-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+textarea {
+
+    background: linear-gradient(180deg, #f8f9ff, #f2f2f9);
+    font-size: 1.4rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+    padding: auto;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.85);
+    color: #2f2a42;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+page-header{
+
+  background-color: #c11b1b;
 }
