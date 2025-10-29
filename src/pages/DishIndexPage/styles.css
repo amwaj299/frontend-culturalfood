@@ -1,0 +1,16 @@
+.index-card-container {
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.page-header {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.page-header img {
+  width: 80px;
+  margin: 0 10px;
+}
