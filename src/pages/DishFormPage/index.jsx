@@ -84,7 +84,10 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
       const payload = {
         ...formData,
         origin_id: Number(formData.origin),
-        tags: selectedTags,
+        tag_ids: allTags
+       .filter(tag => selectedTags.includes(tag.name))
+       .map(tag => tag.id),
+
       };
 
       if (editDish) {

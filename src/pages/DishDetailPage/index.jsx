@@ -51,8 +51,22 @@ export default function DishDetailPage() {
       <div className="dish-details">
         <h1>{dishDetail.name}</h1>
         <p><strong>Description:</strong> {dishDetail.description}</p>
-       {dishDetail.origin && (
-      <p><strong>Origin:</strong> {dishDetail.origin.name}</p>
+        {dishDetail.origin && (
+          <>
+            <p><strong>Origin:</strong> {dishDetail.origin.name}</p>
+            {dishDetail.tags && dishDetail.tags.length > 0 && (
+              <div className="tags-container">
+                <strong>Tags:</strong>
+                <div className="tags-list">
+                  {dishDetail.tags.map((tag) => (
+                    <span key={tag.id} className="tag-bubble">
+                      {tag.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
 
@@ -65,10 +79,13 @@ export default function DishDetailPage() {
         </Link>
       </div>
 
+      <Link to="/dishes" className="btn back">
+        ← Back
+      </Link>
+
       <section className="add-photo-section">
         <AddPhotoForm dish={dishDetail} addPhoto={addPhoto} />
       </section>
     </section>
   );
 }
-
