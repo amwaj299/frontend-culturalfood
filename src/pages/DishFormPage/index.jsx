@@ -13,6 +13,7 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     async function fetchLocations() {
       try {
@@ -24,6 +25,7 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
     }
     fetchLocations();
   }, []);
+
 
   useEffect(() => {
     async function getDish() {
@@ -46,17 +48,20 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
     evt.preventDefault();
     try {
       let newDish;
+      const payload = { ...formData, origin_id: Number(formData.origin) };
+
       if (editDish) {
-        newDish = await dishAPI.update(formData, currDish.id);
+        newDish = await dishAPI.update(payload, currDish.id);
       } else {
-        const payload = { ...formData, origin_id: Number(formData.origin) };
         newDish = await dishAPI.create(payload);
       }
+
       if (newDish && newDish.id) {
         navigate(`/dishes/${newDish.id}`);
       } else {
-        console.log("Dish not created properly:", newDish);
+        console.log("Dish not created or updated properly:", newDish);
       }
+
       setFormData(initialState);
     } catch (err) {
       console.log("Error saving dish:", err);
@@ -92,6 +97,7 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
         </form>
       </>
     );
+
 
   if (editDish && !currDish) return <h1>Loading...</h1>;
   if (createDish || editDish)
@@ -181,6 +187,13 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
 
           <button type="submit" className="btn end submit">
             Submit!
+          </button>
+          <button
+            type="button"
+            className="btn secondary"
+            onClick={() => navigate(-1)}
+          >
+            ← Back
           </button>
         </form>
       </>
