@@ -5,6 +5,7 @@ import AboutPage from "../AboutPage";
 import DishIndexPage from "../DishIndexPage";
 import { useLocation, Navigate } from 'react-router';
 import DishDetailPage from "../DishDetailPage";
+import DishFormPage from "../DishFormPage";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <li><Link to="/home">Home</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/dishes">All Dishes</Link></li>
+            <li><Link to="/dishes/new">Create New Dish</Link></li>
           </ul>
         </nav>
       </header>
@@ -43,6 +45,9 @@ function App() {
           <Route path="/dishes" element={<DishIndexPage />} />
           <Route path="/*" element={<Navigate to="/home" />} />
           <Route path="/dishes/:id" element={<DishDetailPage />} />
+          <Route path="/dishes/new" element={<DishFormPage createDish={true} />} />
+          <Route path="/dishes/edit/:id" element={<DishFormPage editDish={true} />} />
+          <Route path="/dishes/confirm_delete/:id" element={<DishFormPage deleteDish={true} />} />
         </Routes>
       </main>
     </>

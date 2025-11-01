@@ -1,10 +1,11 @@
 import "./styles.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import dishPlaceholder from "../../assets/images/dish.svg"; 
+import { useParams, Link } from "react-router-dom";
+import dishPlaceholder from "../../assets/images/dish.svg";
 import * as dishAPI from "../../utilities/dish-api";
+import AddPhotoForm from "../../components/Forms/AddPhotoForm";
 
- function DishDetailPage() {
+export default function DishDetailPage() {
   const [dishDetail, setDishDetail] = useState(null);
   const { id } = useParams();
 
@@ -21,22 +22,53 @@ import * as dishAPI from "../../utilities/dish-api";
     if (id) getAndSetDetail();
   }, [id]);
 
+  async function addPhoto(dishId, formData) {
+    try {
+      const updatedDish = await dishAPI.addPhoto(dishId, formData);
+      setDishDetail(updatedDish);
+    } catch (err) {
+      console.log(err);
+      setDishDetail({ ...dishDetail });
+    }
+  }
+
   if (!dishDetail) return <h3>Your dish details will display soon...</h3>;
 
   return (
     <section className="detail-dish-container">
       <div className="detail-dish-img">
-        <img src={dishPlaceholder} alt="Dish placeholder" />
+        {dishDetail.photo ? (
+          <img
+            src={dishDetail.photo}
+            alt={`A photo of ${dishDetail.name}`}
+            className="usr-img"
+          />
+        ) : (
+          <img src={dishPlaceholder} alt="Dish placeholder" />
+        )}
       </div>
+
       <div className="dish-details">
         <h1>{dishDetail.name}</h1>
         <p><strong>Description:</strong> {dishDetail.description}</p>
-        {dishDetail.origin && (
-          <p><strong>Origin:</strong> {dishDetail.origin.name}</p>
+       {dishDetail.origin && (
+      <p><strong>Origin:</strong> {dishDetail.origin.name}</p>
         )}
       </div>
+
+      <div className="dish-actions">
+        <Link to={`/dishes/edit/${dishDetail.id}`} className="btn warn">
+          Edit
+        </Link>
+        <Link to={`/dishes/confirm_delete/${dishDetail.id}`} className="btn danger">
+          Delete
+        </Link>
+      </div>
+
+      <section className="add-photo-section">
+        <AddPhotoForm dish={dishDetail} addPhoto={addPhoto} />
+      </section>
     </section>
   );
 }
 
-export default DishDetailPage;
