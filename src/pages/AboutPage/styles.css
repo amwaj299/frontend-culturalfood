@@ -1,0 +1,30 @@
+/* div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #e7f7ff, #fff5ec);
+  font-family: 'Poppins', sans-serif;
+} */
+
+/* .about-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 50px 60px;
+  max-width: 700px;
+  text-align: center;
+} */
+
+.about-card h1 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.about-card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}

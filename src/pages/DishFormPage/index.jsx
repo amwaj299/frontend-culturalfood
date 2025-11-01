@@ -143,10 +143,10 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
   if (createDish || editDish)
     return (
       <>
-        <div className="page-header">
+        {/* <div className="page-header">
           {editDish ? <h1>Edit Dish Info</h1> : <h1>Add a Dish</h1>}
           <img src={dishIcon} alt="Dish Icon" />
-        </div>
+        </div> */}
 
         <form className="form-container" onSubmit={handleSubmit}>
           <table>

@@ -1,26 +1,35 @@
-import "./styles.css";
-import dishPlaceholder from "../../assets/images/dish.svg";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
-function DishIndexCard({ dish }) {
+export default function DishIndexCard({ dish }) {
   return (
-    <div className="dish-index-card">
-      <Link to={`/dishes/${dish.id}`} className="card-link">
+    <div className="dish-card">
+      <Link to={`/dishes/${dish.id}`}>
         <img
-          src={dish.photo || dishPlaceholder}
+          src={dish.photo}
           alt={dish.name}
-          className="dish-img"
+          onError={(e) => (e.target.src = "/fallback.jpg")}
         />
-        <div className="dish-info">
-          <h2>{dish.name}</h2>
-          <p>{dish.origin ? `A dish from ${dish.origin}` : "Origin unknown"}</p>
-          <small>{dish.description}</small>
-        </div>
       </Link>
+      <div className="dish-info">
+        <h2>{dish.name}</h2>
+        {dish.origin && (
+          <p className="dish-location">{dish.origin.name}</p>
+        )}
+        <p className="dish-description">{dish.description}</p>
+
+        {dish.tags && dish.tags.length > 0 && (
+          <div className="tags-container">
+            {dish.tags.map((tag) => (
+              <span key={tag.id} className="tag">
+                {tag.name}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
-
-export default DishIndexCard;
 
 

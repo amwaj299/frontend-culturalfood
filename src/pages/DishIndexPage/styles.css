@@ -1,115 +1,77 @@
-/* .notes-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #f8f9ff, #f2f2f9);
-  padding: 40px 20px;
-}
-
-
-.notes-logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-
-.notes-container h1 {
-  color: #6b42ff;
-  text-shadow: 0 3px 6px rgba(100, 60, 255, 0.15);
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-
-.add-note-btn {
-  background: linear-gradient(135deg, #8e6bff, #bfa5ff);
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-bottom: 40px;
-}
-
-.add-note-btn:hover {
-  background: linear-gradient(135deg, #a586ff, #d2c0ff);
-  transform: scale(1.05);
-}
-
-
-.notes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  width: 90%;
-  max-width: 900px;
-}
-
-
 .index-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 60px 80px;
+  background: linear-gradient(to right, #e8f9ff, #fff5ed);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+.dish-card {
   background: #fff;
-  border-radius: 15px;
-  border: 2px solid #c6b4ff;
-  box-shadow: 0 4px 10px rgba(140, 100, 255, 0.15);
-  text-align: center;
-  padding: 20px 10px;
-  transition: 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.note-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(120, 80, 255, 0.25);
+.dish-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
-
-.note-card img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 10px;
+.dish-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
+.dish-info {
+  padding: 20px;
+  text-align: left;
+}
 
-.note-card h2 {
-  font-size: 1.2rem;
-  color: #6b42ff;
+.dish-info h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
   margin-bottom: 8px;
 }
 
-.note-card p {
+.dish-info p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.dish-location {
+  font-size: 14px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tag {
+  background-color: #ffe9d9;
+  color: #ff5a00;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.loading-message {
+  text-align: center;
   color: #555;
-  font-size: 0.95rem;
+  font-size: 16px;
+  margin-top: 60px;
 }
-
-textarea {
-
-    background: linear-gradient(180deg, #f8f9ff, #f2f2f9);
-    font-size: 1.4rem;
-    font-weight: 500;
-    display: block;
-    margin-bottom: 8px;
-    padding: auto;
-}
-
-input[type="text"] {
-    width: 80%;
-    padding: 12px 15px;
-    border-radius: 12px;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.85);
-    color: #2f2a42;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    transition: 0.3s;
-}
-
-page-header{
-
-  background-color: #c11b1b;
-} */
