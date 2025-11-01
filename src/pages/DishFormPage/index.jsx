@@ -4,16 +4,21 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import dishIcon from "../../assets/images/dish.svg";
 import * as dishAPI from "../../utilities/dish-api";
 import sendRequest from "../../utilities/sendRequest";
+import * as tagAPI from "../../utilities/tag-api";
 
 export default function DishFormPage({ createDish, editDish, deleteDish }) {
   const initialState = { name: "", origin: "", description: "", photo: "" };
   const [formData, setFormData] = useState(initialState);
   const [currDish, setCurrDish] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [allTags, setAllTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [newTag, setNewTag] = useState("");
+
   const { id } = useParams();
   const navigate = useNavigate();
 
-
+  
   useEffect(() => {
     async function fetchLocations() {
       try {
@@ -24,6 +29,19 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
       }
     }
     fetchLocations();
+  }, []);
+
+
+  useEffect(() => {
+    async function fetchTags() {
+      try {
+        const tags = await tagAPI.getAllTags();
+        setAllTags(tags);
+      } catch (err) {
+        console.log("Error loading tags:", err);
+      }
+    }
+    fetchTags();
   }, []);
 
 
@@ -44,11 +62,30 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
   }
 
+  function handleTagToggle(tag) {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter((t) => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  }
+
+  async function handleAddTag() {
+    if (!newTag.trim()) return;
+    const created = await tagAPI.createTag({ name: newTag });
+    setAllTags([...allTags, created]);
+    setNewTag("");
+  }
+
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
       let newDish;
-      const payload = { ...formData, origin_id: Number(formData.origin) };
+      const payload = {
+        ...formData,
+        origin_id: Number(formData.origin),
+        tags: selectedTags,
+      };
 
       if (editDish) {
         newDish = await dishAPI.update(payload, currDish.id);
@@ -63,6 +100,7 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
       }
 
       setFormData(initialState);
+      setSelectedTags([]);
     } catch (err) {
       console.log("Error saving dish:", err);
     }
@@ -97,7 +135,6 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
         </form>
       </>
     );
-
 
   if (editDish && !currDish) return <h1>Loading...</h1>;
   if (createDish || editDish)
@@ -184,6 +221,36 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
               </tr>
             </tbody>
           </table>
+
+          <div className="tags-section">
+            <label>Tags * (select at least one)</label>
+            <div className="tag-list">
+              {allTags.map((tag) => (
+                <button
+                  type="button"
+                  key={tag.id}
+                  onClick={() => handleTagToggle(tag.name)}
+                  className={`tag-btn ${
+                    selectedTags.includes(tag.name) ? "active" : ""
+                  }`}
+                >
+                  {tag.name}
+                </button>
+              ))}
+            </div>
+
+            <div className="add-tag-container">
+              <input
+                type="text"
+                placeholder="Add custom tag..."
+                value={newTag}
+                onChange={(e) => setNewTag(e.target.value)}
+              />
+              <button type="button" onClick={handleAddTag}>
+                Add
+              </button>
+            </div>
+          </div>
 
           <button type="submit" className="btn end submit">
             Submit!

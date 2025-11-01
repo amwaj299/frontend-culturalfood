@@ -125,3 +125,23 @@
   background-color:rgb(255, 255, 255);
 }
 
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tag-btn {
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tag-btn.active {
+  background-color: #ff6600;
+  color: white;
+}
