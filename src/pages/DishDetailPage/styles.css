@@ -59,3 +59,28 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+.btn.back {
+  background-color: #000;
+  color: #fff;
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.tag-bubble {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  margin: 0.2rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tag-bubble:hover {
+  background-color: #ddd;
+}

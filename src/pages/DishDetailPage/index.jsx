@@ -50,18 +50,28 @@ export default function DishDetailPage() {
 
       <div className="dish-details">
         <h1>{dishDetail.name}</h1>
-        <p><strong>Description:</strong> {dishDetail.description}</p>
+        <p>
+          <strong>Description:</strong> {dishDetail.description}
+        </p>
+
         {dishDetail.origin && (
           <>
-            <p><strong>Origin:</strong> {dishDetail.origin.name}</p>
+            <p>
+              <strong>Origin:</strong> {dishDetail.origin.name}
+            </p>
+
             {dishDetail.tags && dishDetail.tags.length > 0 && (
               <div className="tags-container">
                 <strong>Tags:</strong>
                 <div className="tags-list">
                   {dishDetail.tags.map((tag) => (
-                    <span key={tag.id} className="tag-bubble">
+                    <Link
+                      key={tag.id}
+                      to={`/dishes/filter/${tag.name}`}
+                      className="tag-bubble"
+                    >
                       {tag.name}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -74,7 +84,7 @@ export default function DishDetailPage() {
         <Link to={`/dishes/edit/${dishDetail.id}`} className="btn warn">
           Edit
         </Link>
-        <Link to={`/dishes/confirm_delete/${dishDetail.id}`} className="btn danger">
+        <Link to={`/dishes/delete/${dishDetail.id}`} className="btn danger">
           Delete
         </Link>
       </div>

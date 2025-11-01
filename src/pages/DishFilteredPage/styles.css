@@ -1,0 +1,11 @@
+.filtered-dishes-container {
+  text-align: center;
+  padding: 1rem;
+}
+
+.dishes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}

@@ -29,3 +29,8 @@ export function dishesByLocation(locationId) {
   return sendRequest(`/locations/${locationId}/dishes/`);
 }
 
+export function getFiltered(tag) {
+  return sendRequest(`${baseURL}filter/${tag}/`);
+}
+
+
