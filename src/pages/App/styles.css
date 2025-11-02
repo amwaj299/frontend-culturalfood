@@ -1,7 +1,20 @@
  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
  body{
 
-  background-color: #f6f7f9;
+  /* background-color: #f6f7f9; */
   /* background: linear-gradient(135deg, #d4f7fd, #f6ebe7); */
   font-family: "Poppins", sans-serif;
   color: #fff;
@@ -12,7 +25,9 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  background-color: #f9fafb;
 
+  
 
  }
 

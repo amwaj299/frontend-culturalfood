@@ -8,3 +8,5 @@ export async function getAllTags() {
 export async function createTag(tagData) {
   return sendRequest(baseURL, "POST", tagData);
 }
+
+

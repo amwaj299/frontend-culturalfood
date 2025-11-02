@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as usersAPI from "../../utilities/users-api.js";
 import "./styles.css";
-
+import signupImage from "../../assets/images/Dish9.png"; 
 
 export default function SignupPage({ setUser }) {
   const navigate = useNavigate();
@@ -19,7 +19,8 @@ export default function SignupPage({ setUser }) {
     const e = { ...errors };
     if (target.name === "email" && !target.value.includes("@")) e.email = "Invalid email";
     if (target.name === "password" && target.value.length < 3) e.password = "Too short";
-    if (target.name === "confirmPassword" && target.value !== formData.password) e.confirmPassword = "Passwords don't match";
+    if (target.name === "confirmPassword" && target.value !== formData.password)
+      e.confirmPassword = "Passwords don't match";
     setErrors(e);
   };
 
@@ -36,6 +37,9 @@ export default function SignupPage({ setUser }) {
 
   return (
     <div className="page-header">
+     
+      <img src={signupImage} alt="signup visual" className="signup-image" />
+
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit} className="form-container signup">
         <input name="username" onChange={handleChange} placeholder="Username" required />
@@ -47,3 +51,5 @@ export default function SignupPage({ setUser }) {
     </div>
   );
 }
+
+

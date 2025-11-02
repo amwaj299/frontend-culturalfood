@@ -18,7 +18,6 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     async function fetchLocations() {
       try {
@@ -30,8 +29,6 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
     }
     fetchLocations();
   }, []);
-
-
   useEffect(() => {
     async function fetchTags() {
       try {
@@ -43,7 +40,6 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
     }
     fetchTags();
   }, []);
-
 
   useEffect(() => {
     async function getDish() {
@@ -85,9 +81,8 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
         ...formData,
         origin_id: Number(formData.origin),
         tag_ids: allTags
-       .filter(tag => selectedTags.includes(tag.name))
-       .map(tag => tag.id),
-
+          .filter((tag) => selectedTags.includes(tag.name))
+          .map((tag) => tag.id),
       };
 
       if (editDish) {
@@ -112,42 +107,46 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
   async function handleDelete(evt) {
     evt.preventDefault();
     try {
-      await dishAPI.deleteDish(currDish.id);
-      navigate("/dishes");
+      const res = await dishAPI.deleteDish(currDish.id);
+      if (res && res.success) {
+        navigate("/dishes");
+      } else {
+        console.log("Dish not deleted properly:", res);
+      }
     } catch (err) {
       console.log("Error deleting dish:", err);
     }
   }
 
   if (deleteDish && !currDish) return <h1>Loading...</h1>;
+
   if (deleteDish && currDish)
     return (
-      <>
-        <div className="page-header">
+      <div className="delete-page">
+        <div className="delete-card">
+          <div className="delete-icon">🗑️</div>
           <h1>Delete Dish?</h1>
-          <img src={dishIcon} alt="Dish Icon" />
+          <p className="delete-warning">
+            Are you sure you want to delete <strong>{currDish.name}</strong>?
+          </p>
+
+          <div className="delete-buttons">
+            <Link to={`/dishes/${currDish.id}`} className="cancel-btn">
+              Cancel
+            </Link>
+            <button onClick={handleDelete} className="delete-btn">
+              Yes - Delete!
+            </button>
+          </div>
         </div>
-        <h2>Are you sure you want to delete {currDish.name}?</h2>
-        <form onSubmit={handleDelete}>
-          <Link to={`/dishes/${currDish.id}`} className="btn secondary">
-            Cancel
-          </Link>
-          <button type="submit" className="btn danger">
-            Yes - Delete!
-          </button>
-        </form>
-      </>
+      </div>
     );
 
   if (editDish && !currDish) return <h1>Loading...</h1>;
+
   if (createDish || editDish)
     return (
       <>
-        {/* <div className="page-header">
-          {editDish ? <h1>Edit Dish Info</h1> : <h1>Add a Dish</h1>}
-          <img src={dishIcon} alt="Dish Icon" />
-        </div> */}
-
         <form className="form-container" onSubmit={handleSubmit}>
           <table>
             <tbody>

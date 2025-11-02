@@ -4,6 +4,8 @@ section {
   justify-content: center;
   align-items: center;
   font-family: 'Poppins', sans-serif; 
+  margin-top: 30px;
+  
 } 
 
 .form-container.login {
@@ -13,6 +15,7 @@ section {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   width: 350px;
   text-align: center;
+  
 }
 
 
@@ -60,7 +63,7 @@ section {
   padding: 12px;
   font-size: 15px;
   cursor: pointer;
-  width: 100%;
+  width: 101%;
   margin-top: 10px;
   transition: background-color 0.3s ease;
 }

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import dishPlaceholder from "../../assets/images/dish.svg";
 import * as dishAPI from "../../utilities/dish-api";
-import AddPhotoForm from "../../components/Forms/AddPhotoForm";
 
 export default function DishDetailPage() {
   const [dishDetail, setDishDetail] = useState(null);
@@ -21,16 +20,6 @@ export default function DishDetailPage() {
     }
     if (id) getAndSetDetail();
   }, [id]);
-
-  async function addPhoto(dishId, formData) {
-    try {
-      const updatedDish = await dishAPI.addPhoto(dishId, formData);
-      setDishDetail(updatedDish);
-    } catch (err) {
-      console.log(err);
-      setDishDetail({ ...dishDetail });
-    }
-  }
 
   if (!dishDetail) return <h3>Your dish details will display soon...</h3>;
 
@@ -92,10 +81,6 @@ export default function DishDetailPage() {
       <Link to="/dishes" className="btn back">
         ← Back
       </Link>
-
-      <section className="add-photo-section">
-        <AddPhotoForm dish={dishDetail} addPhoto={addPhoto} />
-      </section>
     </section>
   );
 }

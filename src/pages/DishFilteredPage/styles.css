@@ -1,11 +1,65 @@
 .filtered-dishes-container {
   text-align: center;
-  padding: 1rem;
+  padding: 60px 40px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 85%;
+  max-width: 1200px;
+  margin: 60px auto;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.filtered-dishes-container h1 {
+  font-size: 2rem;
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-transform: capitalize;
 }
 
 .dishes-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 30px;
 }
+
+.dish-card {
+  width: 320px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dish-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn.back {
+  display: inline-block;
+  margin-top: 50px;
+  background: rgba(240, 240, 240, 0.8);
+  color: #222;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn.back:hover {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+.btn.back {
+  display: block;
+  margin: 40px auto;
+  text-align: center;
+}
+
