@@ -14,6 +14,8 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
   const [allTags, setAllTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [newTag, setNewTag] = useState("");
+  const [managedTag, setManagedTag] = useState(null);
+  const [managedName, setManagedName] = useState("");
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -73,6 +75,38 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
     setNewTag("");
   }
 
+  async function updateManagedTag() {
+    if (!managedTag) return;
+    const newName = managedName.trim();
+    if (!newName || newName === managedTag.name) return;
+    try {
+      const updated = await tagAPI.updateTag(managedTag.id, { name: newName });
+      setAllTags(allTags.map((t) => (t.id === managedTag.id ? updated : t)));
+      if (selectedTags.map((n) => n.toLowerCase()).includes(managedTag.name.toLowerCase())) {
+        setSelectedTags(selectedTags.map((n) => (n.toLowerCase() === managedTag.name.toLowerCase() ? updated.name : n)));
+      }
+      setManagedTag(updated);
+      setManagedName(updated.name);
+    } catch (err) {
+      console.log("Error updating tag:", err);
+    }
+  }
+
+  async function handleDeleteByName() {
+    if (!managedTag) return;
+    try {
+      const res = await tagAPI.deleteTag(managedTag.id);
+      if (res && res.success) {
+        setAllTags(allTags.filter((t) => t.id !== managedTag.id));
+        setSelectedTags(selectedTags.filter((n) => n.toLowerCase() !== managedTag.name.toLowerCase()));
+        setManagedTag(null);
+        setManagedName("");
+      }
+    } catch (err) {
+      console.log("Error deleting tag:", err);
+    }
+  }
+
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
@@ -80,9 +114,9 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
       const payload = {
         ...formData,
         origin_id: Number(formData.origin),
-        tag_ids: allTags
+        tags_ids: allTags
           .filter((tag) => selectedTags.includes(tag.name))
-          .map((tag) => tag.id),
+          .map((tag) => tag.id )
       };
 
       if (editDish) {
@@ -228,17 +262,31 @@ export default function DishFormPage({ createDish, editDish, deleteDish }) {
             <label>Tags * (select at least one)</label>
             <div className="tag-list">
               {allTags.map((tag) => (
+                <div key={tag.id} className="tag-item">
                 <button
                   type="button"
-                  key={tag.id}
-                  onClick={() => handleTagToggle(tag.name)}
-                  className={`tag-btn ${
-                    selectedTags.includes(tag.name) ? "active" : ""
-                  }`}
+                    onClick={() => {
+                      handleTagToggle(tag.name);
+                      setManagedTag(tag);
+                      setManagedName(tag.name);
+                    }}
+                    className={`tag-btn ${selectedTags.includes(tag.name) ? "active" : ""}`}
                 >
                   {tag.name}
                 </button>
+                </div>
               ))}
+            </div>
+
+            <div className="tag-manage add-tag-container" style={{ marginTop: 8 }}>
+              <input
+                type="text"
+                placeholder="New name..."
+                value={managedName}
+                onChange={(e) => setManagedName(e.target.value)}
+              />
+              <button type="button" onClick={updateManagedTag}>Update</button>
+              <button type="button" onClick={handleDeleteByName}>Delete</button>
             </div>
 
             <div className="add-tag-container">

@@ -1,7 +1,7 @@
 export default async function sendRequest(url, method = "GET", payload) {
   const options = { method };
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("accessToken");
 
   if (payload) {
     options.headers = { "Content-Type": "application/json" };

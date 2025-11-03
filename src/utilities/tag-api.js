@@ -9,4 +9,12 @@ export async function createTag(tagData) {
   return sendRequest(baseURL, "POST", tagData);
 }
 
+export async function updateTag(tagId, tagData) {
+  return sendRequest(`${baseURL}${tagId}/`, "PUT", tagData);
+}
+
+export async function deleteTag(tagId) {
+  return sendRequest(`${baseURL}${tagId}/`, "DELETE");
+}
+
 

@@ -1,39 +1,44 @@
 import sendRequest from "./sendRequest";
-const baseURL= "/users";
+const baseURL = "/users/";
 
 export async function signup(formData) {
-    try {
-        const response = await sendRequest(`${baseURL}/signup/`, "POST", formData);
-        localStorage.setItem('token', response.access);
-        return response.user;
-    } catch (err) {
-        localStorage.removeItem('token');
-        return null;
-    }
+  try {
+    const newUserData = await sendRequest(`${baseURL}signup/`, "POST", formData);
+    localStorage.setItem("accessToken", newUserData.access);
+    localStorage.setItem("refreshToken", newUserData.refresh);
+    return newUserData.user;
+  } catch (err) {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    return null;
+  }
 }
 
 export async function login(formData) {
-    try {
-        const response = await sendRequest(`${baseURL}/login/`, "POST", formData);
-        localStorage.setItem('token', response.access);
-        console.log(response, "login check response");
-        return response.user;
-    } catch (err) {
-        localStorage.removeItem('token');
-        return null;
-    }
+  try {
+    const loggedInUser = await sendRequest(`${baseURL}login/`, "POST", formData);
+    localStorage.setItem("accessToken", loggedInUser.access);
+    localStorage.setItem("refreshToken", loggedInUser.refresh);
+    console.log(loggedInUser, "login check response");
+    return loggedInUser.user;
+  } catch (err) {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    return null;
+  }
 }
 
-export async function logout() {
-    localStorage.removeItem('token');
+export function logout() {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
 }
 
 export async function getUser() {
   try {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     if (token) {
-      const response = await sendRequest(`${url}/token/refresh/`);
-      localStorage.setItem("token", response.access);
+      const response = await sendRequest(`${baseURL}token/refresh/`);
+      localStorage.setItem("accessToken", response.access);
       return response.user;
     }
     return null;

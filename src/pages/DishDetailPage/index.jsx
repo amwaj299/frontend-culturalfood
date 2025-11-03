@@ -38,7 +38,6 @@ export default function DishDetailPage() {
       </div>
 
       <div className="dish-details">
-        <h1>{dishDetail.name}</h1>
         <p>
           <strong>Description:</strong> {dishDetail.description}
         </p>

@@ -26,12 +26,18 @@ export default function HomePage({ user, setUser }) {
 
   return (
     <>
-      <section className="logo-container">
-        <div className="home-container">
-          {/* <img src={catCollectorCat} alt="Cultural Food Passport" /> */}
-        </div>
-        {/* <img src={logoType} alt="Cultural Food Passport Logo" /> */}
-      </section>
+      {user && (
+        <section className="home-hero">
+          <div className="home-hero-card">
+            <h1>Welcome{user?.first_name ? `, ${user.first_name}` : "!"}</h1>
+            <p>Discover dishes, explore tags, and add your favorites.</p>
+            <div className="hero-actions">
+              <button className="hero-btn primary" onClick={() => navigate("/dishes")}>Browse Dishes</button>
+              <button className="hero-btn" onClick={() => navigate("/dishes/new")}>Create New Dish</button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {!user && (
         <section>
