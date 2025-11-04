@@ -35,8 +35,8 @@ export default function HomePage({ user, setUser }) {
               <button className="hero-btn primary" onClick={() => navigate("/dishes")}>Browse Dishes</button>
               <button className="hero-btn" onClick={() => navigate("/dishes/new")}>Create New Dish</button>
             </div>
-          </div>
-        </section>
+        </div>
+      </section>
       )}
 
       {!user && (

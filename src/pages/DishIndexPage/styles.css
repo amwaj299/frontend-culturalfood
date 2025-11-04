@@ -10,7 +10,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  width: 90%;
+  width: 75%;
   max-width: 1200px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 25px;
