@@ -1,4 +1,3 @@
-
 # Cultural Food Passport (Frontend)
 
 A full-stack web application where users can share and explore traditional dishes from around the world.  
@@ -7,7 +6,7 @@ This project connects people through food and showcases cultural diversity in a 
 
 ---
 
-##  Project Overview
+## Project Overview
 
 **Cultural Food Passport** is a capstone project built during the SDA-Siraj Bootcamp.  
 It uses **React** for the frontend and **Django REST Framework** for the backend, with **PostgreSQL** as the database.  
@@ -15,11 +14,11 @@ The app implements **JWT authentication** and **CRUD functionality**, allowing u
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 | Category | Technology |
 |-----------|-------------|
-| Frontend | React, JavaScript, React Router, CSS |
+| Frontend | React, JavaScript, React Router |
 | Backend | Django REST Framework |
 | Database | PostgreSQL |
 | Auth | JSON Web Token (JWT) |
@@ -27,20 +26,21 @@ The app implements **JWT authentication** and **CRUD functionality**, allowing u
 
 ---
 
-##  User Stories
+## User Stories
 
 1. I can sign up and create an account.  
 2. I can log in to my account.  
-3. I can add a new dish with a name, photo, and location.  
-4. I can see all dishes from different countries.  
-5. I can open one dish and view its details.  
+3. I can add a new dish with a name, photo, description, and location.  
+4. I can view all dishes shared by users.  
+5. I can view detailed information about a dish, including its tags and origin.  
 6. I can edit or delete my own dishes.  
-7. I can filter dishes by tags like spicy or sweet.  
-8. I can view dishes even if I’m not logged in.
+7. I can create, edit, and delete tags to describe dishes.  
+8. I can filter dishes by tags such as spicy, sweet, or traditional.  
+9. I can view dishes even if I’m not logged in.
 
 ---
 
-##  Entity Relationship Diagram (ERD)
+## Entity Relationship Diagram (ERD)
 
 **Models:**
 - **User** → owns the dishes they create  
@@ -52,7 +52,6 @@ The app implements **JWT authentication** and **CRUD functionality**, allowing u
 - User → Dish = One-to-Many  
 - Dish → Location = Many-to-One  
 - Dish ↔ Tag = Many-to-Many  
-
 
 
 ---
@@ -92,15 +91,20 @@ The app implements **JWT authentication** and **CRUD functionality**, allowing u
 
 ---
 
-## Installation & Setup
-
 ### Clone Repositories
-<!-- ```bash
-git clone <frontend-repo-url>
-git clone <backend-repo-url> -->
+git clone https://github.com/amwaj299/frontend-culturalfood
+git clone https://github.com/amwaj299/backend-culturalfood
+=[http://localhost:5173/]
 
-## Future Improvements / Icebox Features
+### Installation & Setup
+cd frontend-culturalfood
+npm install
+npm run dev
+docker compose up -d
+docker compose up --build
 
+
+### Future Improvements / Icebox Features
 Add a commenting system where users can interact with dishes posted by others — similar to comment sections on social platforms or Google Maps.
 
 Add likes and reactions for each dish to increase community engagement.
@@ -113,35 +117,19 @@ Add AI-based recommendations suggesting dishes or restaurants based on user inte
 
 
 
+# <!-- # React + Vite
 
+# This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+# Currently, two official plugins are available:
 
+# - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+# - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+# ## React Compiler
 
+# The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
+# ## Expanding the ESLint configuration
 
-
-
-
-
-
-
-
-
-
-<!-- # React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project. -->
+# If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project. -->
