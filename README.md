@@ -42,6 +42,8 @@ The app implements **JWT authentication** and **CRUD functionality**, allowing u
 
 ## Entity Relationship Diagram (ERD)
 
+![ERD Diagram](./src/assets/images/Untitled%20(1).jpg)
+
 **Models:**
 - **User** → owns the dishes they create  
 - **Dish** → includes name, origin, description, photo, user, tags  
