@@ -108,8 +108,6 @@ The app implements **JWT authentication** and **CRUD functionality**, allowing u
 =[http://localhost:5173/]
 
 ### Installation & Setup
-cd frontend-culturalfood
-npm install
 npm run dev
 docker compose up -d
 docker compose up --build
